@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b18">
+  <title>AI DREAM STUDIO — Lil_FaaydaireRTS</title>
+  <style>
+    :root{--bg:#090b18;--panel:#12162a;--panel2:#191f38;--text:#f5f6ff;--muted:#aab0ca;--purple:#8b5cf6;--pink:#ec4899;--cyan:#38bdf8;--line:#303653}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 15% 0%,#25204b 0,transparent 34%),radial-gradient(circle at 90% 20%,#172d4b 0,transparent 30%),var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+    .wrap{max-width:1050px;margin:auto;padding:22px 16px 60px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--purple),var(--pink));display:grid;place-items:center;font-size:24px;font-weight:900}
+    h1{font-size:clamp(20px,4vw,29px);margin:0;letter-spacing:.5px}
+    .creator{font-size:13px;color:#d8b4fe;margin-top:2px}
+    select,input,textarea,button{font:inherit}
+    select{background:var(--panel2);color:var(--text);border:1px solid var(--line);padding:10px 12px;border-radius:10px}
+    .hero{text-align:center;padding:38px 8px 26px}
+    .hero h2{font-size:clamp(28px,6vw,46px);line-height:1.12;margin:0 0 12px}
+    .gradient{background:linear-gradient(90deg,#c4b5fd,#f9a8d4,#7dd3fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{max-width:680px;margin:0 auto;color:var(--muted)}
+    .layout{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
+    .panel{background:linear-gradient(160deg,#171b33ee,#101426ee);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 14px 40px #0003}
+    .panel h3{margin:0 0 16px;font-size:19px}
+    label{display:block;font-size:14px;font-weight:700;margin:14px 0 7px}
+    .field{width:100%;background:#0b1021;color:var(--text);border:1px solid #343c5e;border-radius:11px;padding:12px;outline:none}
+    .field:focus{border-color:var(--purple);box-shadow:0 0 0 3px #8b5cf622}
+    textarea.field{min-height:120px;resize:vertical}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .modes{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+    .mode{padding:12px;background:#0b1021;border:1px solid #343c5e;border-radius:11px;color:var(--text);cursor:pointer;text-align:left}
+    .mode.active{border-color:#b794f6;background:#33245a}
+    .mode span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+    .primary{width:100%;border:0;border-radius:12px;padding:14px 16px;margin-top:18px;background:linear-gradient(90deg,var(--purple),var(--pink));color:white;font-weight:800;cursor:pointer}
+    .notice{font-size:13px;color:var(--muted);background:#0b1021;border:1px solid var(--line);padding:12px;border-radius:11px;margin-top:12px}
+    .price{font-size:30px;font-weight:900;color:#f0abfc}
+    .feature{display:flex;gap:10px;margin:12px 0;color:#dce1f7}
+    .feature b{color:#a7f3d0}
+    .preview{min-height:180px;border:1px dashed #586184;border-radius:14px;background:#0b1021;display:grid;place-items:center;text-align:center;padding:18px;color:var(--muted)}
+    .creator-card{margin-top:18px;text-align:center}
+    .creator-card strong{color:#e9b7ff}
+    .footer{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+    .hidden{display:none}
+    .msg{padding:12px;border-radius:10px;background:#202642;color:#e9ddff;margin-top:12px;font-size:14px}
+    @media(max-width:760px){.layout{grid-template-columns:1fr}.two{grid-template-columns:1fr}.top{align-items:flex-start}.hero{padding-top:30px}}
+  </style>
+</head><body>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="logo">AI</div>
+        <div>
+          <h1>AI DREAM STUDIO</h1>
+          <div class="creator">Created by Lil_FaaydaireRTS</div>
+        </div>
+      </div>
+      <select id="language" aria-label="Language">
+        <option value="ht">Kreyòl ayisyen</option>
+        <option value="es">Español</option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="pt">Português</option>
+      </select>
+    </header>
+
+    <section class="hero">
+      <h2>Fè imajinasyon ou tounen <span class="gradient">videyo</span></h2>
+      <p>Kreye lide pou videyo mizik, animasyon, sinema, istwa ak plis ankò. Ekri sa ou imajine, chwazi estil ou, epi prepare pwojè videyo ou.</p>
+    </section>
+
+    <section class="layout">
+      <div class="panel">
+        <h3>🎬 Kreye pwojè videyo ou</h3>
+        <label>Chwazi kalite videyo</label>
+
+        <div class="modes" id="modes">
+          <button class="mode active" data-mode="Videyo mizik">🎵 Videyo mizik<span>Pou chante ak atis</span></button>
+          <button class="mode" data-mode="Desen anime">🐻 Desen anime<span>Karaktè ak animasyon orijinal</span></button>
+          <button class="mode" data-mode="Sinema reyalis">🎥 Sinema reyalis<span>Sèn ki sanble ak fim</span></button>
+          <button class="mode" data-mode="Istwa / Telenovela">❤️ Istwa / Telenovela<span>Epizòd ak dyalòg</span></button>
+          <button class="mode" data-mode="Tèks pou videyo">✍️ Tèks pou videyo<span>Soti nan yon deskripsyon</span></button>
+          <button class="mode" data-mode="Imaj pou videyo">🖼️ Imaj pou videyo<span>Bay yon imaj mouvman</span></button>
+        </div>
+
+        <label for="prompt">Dekri videyo ou vle kreye a</label>
+        <textarea id="prompt" class="field" placeholder="Egzanp: Yon chantè ap chante sou yon gwo sèn, limyè koulè, kamera ap deplase dousman..."></textarea>
+
+        <div class="two">
+          <div>
+            <label for="style">Estil</label>
+            <select id="style" class="field">
+              <option>Reyalis / Cinematic</option>
+              <option>3D Animation</option>
+              <option>Desen anime</option>
+              <option>Anime</option>
+              <option>Videyo mizik</option>
+              <option>Fantasy</option>
+            </select>
+          </div>
+          <div>
+            <label for="ratio">Fòma videyo</label>
+            <select id="ratio" class="field">
+              <option>9:16 — TikTok / Reels</option>
+              <option>16:9 — YouTube</option>
+              <option>1:1 — Kare</option>
+              <option>4:5 — Portrait</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="image">Ajoute yon imaj (opsyonèl)</label>
+        <input id="image" class="field" type="file" accept="image/*">
+
+        <button class="primary" id="create">✨ Prepare pwojè videyo mwen</button>
+        <div id="message" class="msg hidden"></div>
+
+        <div class="notice">Nòt: Paj sa a se entèfas sit la. Pou pwodwi vrè videyo AI, n ap bezwen konekte yon sèvis jenerasyon videyo ak yon sèvè. Bouton an poko voye demann bay yon motè AI.</div>
+      </div>
+
+      <aside>
+        <div class="panel">
+          <h3>👁️ Zòn aperçu</h3>
+          <div class="preview" id="preview">Aperçu pwojè ou a ap parèt isit la apre ou fin ranpli deskripsyon an.</div>
+        </div>
+
+        <div class="panel" style="margin-top:18px">
+          <h3>🎁 Plan itilizatè</h3>
+          <div class="feature"><b>✓</b><span>4 premye esè videyo gratis pou chak itilizatè (lè sistèm kont lan konekte).</span></div>
+          <div class="feature"><b>✓</b><span>Plizyè estil ak kalite pwojè.</span></div>
+          <div class="notice">Apre 4 esè gratis yo, pri ki prevwa a se:</div>
+          <div class="price">RD$350</div>
+          <div class="notice">Peman ak kantite jenerasyon yo poko aktive. Pa voye lajan sou paj sa a; sistèm peman an poko konekte.</div>
+        </div>
+
+        <div class="panel creator-card">
+          <h3>Kontak kreyatè a</h3>
+          <p>Èske ou bezwen èd? Ou ka kontakte kreyatè sit la.</p>
+          <strong>Lil_FaaydaireRTS</strong>
+          <p class="notice">Mesaj prive ak repons administratè ap bezwen yon bazdone ak yon sistèm koneksyon anvan yo ka fonksyone.</p>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="footer">© 2026 AI DREAM STUDIO · Created by <strong>Lil_FaaydaireRTS</strong></footer>
+  </main>  <script>
+    let selectedMode = "Videyo mizik";
+
+    document.querySelectorAll(".mode").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".mode").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        selectedMode = button.dataset.mode;
+      });
+    });
+
+    document.getElementById("create").addEventListener("click", () => {
+      const prompt = document.getElementById("prompt").value.trim();
+      const message = document.getElementById("message");
+      const preview = document.getElementById("preview");
+
+      if (!prompt) {
+        message.textContent = "Tanpri ekri yon deskripsyon pou pwojè videyo ou an premye.";
+        message.classList.remove("hidden");
+        return;
+      }
+
+      preview.textContent =
+        "Kalite: " + selectedMode +
+        " | Estil: " + document.getElementById("style").value +
+        " | Fòma: " + document.getElementById("ratio").value +
+        " | Deskripsyon: " + prompt;
+
+      message.textContent = "Pwojè ou a pare nan aperçu a. Jenerasyon videyo AI a poko konekte.";
+      message.classList.remove("hidden");
+    });
+
+    const translations = {
+      ht: ["Fè imajinasyon ou tounen", "Kreye pwojè videyo ou"],
+      es: ["Convierte tu imaginación en", "Crea tu proyecto de video"],
+      en: ["Turn your imagination into", "Create your video project"],
+      fr: ["Transformez votre imagination en", "Créez votre projet vidéo"],
+      pt: ["Transforme sua imaginação em", "Crie seu projeto de vídeo"]
+    };
+
+    document.getElementById("language").addEventListener("change", event => {
+      const translation = translations[event.target.value];
+      document.querySelector(".hero h2").innerHTML =
+        translation[0] + ' <span class="gradient">video</span>';
+      document.querySelector(".panel h3").textContent =
+        "🎬 " + translation[1];
+    });
+  </script>
+</body>
+</html>
