@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080817">
+<title>AI DREAM STUDIO | Lil_FaaydaireRTS</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080817;color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ padding:18px 15px;
+ display:flex;align-items:center;
+ justify-content:space-between;
+ background:#111126;border-bottom:1px solid #29294b;
+ position:sticky;top:0;z-index:5;
+}
+.logo{font-size:21px;font-weight:900;
+ background:linear-gradient(90deg,#00d9ff,#a855f7,#ff9b32);
+ -webkit-background-clip:text;color:transparent}
+.creator{font-size:11px;color:#aaa;margin-top:5px}
+select,button,textarea{
+ font:inherit;border-radius:10px;
+}
+select{background:#20203b;color:white;padding:10px;border:1px solid #444}
+.hero{text-align:center;padding:35px 15px 25px}
+.hero h1{font-size:35px;margin:8px 0;
+ background:linear-gradient(90deg,#00d9ff,#b45aff,#ff9c35);
+ -webkit-background-clip:text;color:transparent}
+.hero p{color:#b7b7ce;line-height:1.6}
+.tag{color:#bca3ff;font-size:12px}
+.container{max-width:850px;margin:auto;padding:12px}
+.panel{
+ background:#14142b;border:1px solid #303052;
+ border-radius:17px;padding:18px;margin-bottom:17px;
+}
+h2{font-size:19px;margin-top:0}
+label{display:block;margin:14px 0 8px;color:#d4d4ec;font-size:14px}
+textarea{
+ width:100%;min-height:125px;padding:14px;
+ background:#09091a;color:white;border:1px solid #454568;
+ resize:vertical;outline:none;
+}
+textarea:focus{border-color:#9c68ff}
+select.full{width:100%;padding:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{
+ border:0;padding:14px;color:white;
+ background:linear-gradient(100deg,#176be8,#9333ea);
+ font-weight:bold;cursor:pointer;width:100%;
+}
+.btn.secondary{background:#262644;border:1px solid #494969}
+.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mode{
+ padding:15px 8px;background:#20203c;border:1px solid #39395b;
+ border-radius:12px;text-align:center;color:white;
+ cursor:pointer;font-size:14px;
+}
+.mode.active{border:2px solid #a855f7;background:#30204d}
+.preview{
+ min-height:160px;border:1px dashed #55557a;
+ border-radius:14px;display:flex;align-items:center;
+ justify-content:center;text-align:center;color:#aaa;
+ padding:20px;line-height:1.6;
+}
+.notice{
+ background:#25203d;border-left:4px solid #a855f7;
+ padding:13px;border-radius:8px;color:#d8d1ed;
+ font-size:13px;line-height:1.6;
+}
+.creatorbox{text-align:center;padding:25px 10px;color:#aaa}
+.creatorbox strong{color:#c7a3ff}
+footer{text-align:center;padding:20px;color:#777;font-size:12px}
+button:active{opacity:.8}
+@media(max-width:500px){
+ .hero h1{font-size:29px}
+ .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div>
+  <div class="logo">▶ AI DREAM STUDIO</div>
+  <div class="creator">Created by Lil_FaaydaireRTS</div>
+ </div>
+ <select id="language" onchange="changeLanguage()">
+  <option value="ht">Kreyòl 🇭🇹</option>
+  <option value="es">Español 🇪🇸</option>
+  <option value="en">English 🇺🇸</option>
+  <option value="fr">Français 🇫🇷</option>
+  <option value="pt">Português 🇧🇷</option>
+ </select>
+</header>
+
+<section class="hero">
+ <div class="tag">✦ YOUR IMAGINATION, OUR CREATION ✦</div>
+ <h1>AI DREAM STUDIO</h1>
+ <p>Kreye videyo rèv ou yo avèk entèlijans atifisyèl.<br>
+ Mizik, sinema, animasyon ak plis ankò!</p>
+ <div class="tag">KREYE SAN LIMIT ✨</div>
+</section>
+
+<main class="container">
+
+<section class="panel">
+ <h2>🎬 Chwazi sa ou vle kreye</h2>
+ <div class="modes">
+  <button class="mode active" onclick="chooseMode(this,'Text to Video')">✍️<br>Text to Video</button>
+  <button class="mode" onclick="chooseMode(this,'Image to Video')">🖼️<br>Image to Video</button>
+  <button class="mode" onclick="chooseMode(this,'Music Video')">🎵<br>Videyo Mizik</button>
+  <button class="mode" onclick="chooseMode(this,'Animation')">🐭<br>Desen Anime</button>
+  <button class="mode" onclick="chooseMode(this,'Movie')">🎥<br>Fim ak Sinema</button>
+  <button class="mode" onclick="chooseMode(this,'Story')">📖<br>Istwa ak Telenovela</button>
+ </div>
+</section>
+
+<section class="panel">
+ <h2>✨ Dekri videyo ou vle a</h2>
+ <label>Ekri sa imajinasyon ou vle kreye a</label>
+ <textarea id="prompt" placeholder="Egzanp: Kreye yon bèl desen anime 3D kote yon ti sourit entèlijan ap kouri dèyè yon chat komik nan yon gwo kay..."></textarea>
+
+ <div class="grid">
+  <div>
+   <label>Stil videyo</label>
+   <select class="full" id="style">
+    <option>Reyalis / Cinematic</option>
+    <option>3D Animation</option>
+    <option>Anime Japonè</option>
+    <option>Cartoon / Desen anime</option>
+    <option>Fantasy</option>
+    <option>Horror</option>
+    <option>Komedi</option>
+    <option>Mizik</option>
+   </select>
+  </div>
+  <div>
+   <label>Fòm videyo</label>
+   <select class="full" id="format">
+    <option>Vètikal - TikTok / Reels</option>
+    <option>Orizontal - YouTube / Cinema</option>
+    <option>Kare - Instagram</option>
+   </select>
+  </div>
+ </div>
+
+ <label>Dire videyo ou vle a</label>
+ <select class="full" id="duration">
+  <option>10 segonn</option>
+  <option>30 segonn</option>
+  <option>1 minit</option>
+  <option>1 minit 30 segonn</option>
+  <option>Plis pase 1 minit 30 segonn</option>
+ </select>
+
+ <label>Voye yon foto (opsyonèl)</label>
+ <input type="file" id="photo" accept="image/*" style="width:100%;color:white">
+
+ <br><br>
+ <button class="btn" onclick="generate()">✨ GENERATE VIDEO</button>
+</section>
+
+<section class="panel">
+ <h2>🎞️ Rezilta kreyasyon ou</h2>
+ <div class="preview" id="result">
+  🎬<br>Videyo ou kreye yo ap parèt isit la.
+ </div>
+</section>
+
+<section class="panel">
+ <h2>💎 Kont ak aksè</h2>
+ <div class="notice">
+ Chak nouvo itilizatè ap jwenn 4 videyo gratis.
+ Apre sa, pri pou kontinye itilize sèvis la se
+ <strong>RD$350 (peso dominiken).</strong>
+ </div>
+ <p style="color:#aaa;font-size:13px">
+ Pou kesyon sou kredi, peman oswa asistans, kontakte administratè a.
+ </p>
+ <button class="btn secondary" onclick="contact()">💬 Kontakte Lil_FaaydaireRTS</button>
+</section>
+
+<section class="panel">
+ <h2>👑 Espas Kreyatè</h2>
+ <div class="creatorbox">
+  <div style="font-size:38px">👑</div>
+  <strong>Lil_FaaydaireRTS</strong>
+  <p>Founder & Owner of AI DREAM STUDIO</p>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ AI DREAM STUDIO © 2026<br>
+ Created with ❤️ by Lil_FaaydaireRTS<br>
+ Imajine. Kreye. Enspire.
+</footer>
+
+<script>
+let currentMode="Text to Video";
+
+function chooseMode(button,mode){
+ currentMode=mode;
+ document.querySelectorAll('.mode').forEach(b=>b.classList.remove('active'));
+ button.classList.add('active');
+}
+
+function generate(){
+ let prompt=document.getElementById('prompt').value.trim();
+ if(!prompt){
+  alert("Tanpri ekri yon deskripsyon pou videyo ou.");
+  return;
+ }
+ document.getElementById('result').innerHTML=
+ "✨ Demann ou pare!<br><br>"+
+ "Mòd: "+currentMode+
+ "<br><br>Deskripsyon: "+escapeHTML(prompt)+
+ "<br><br>Motè jenerasyon AI a poko konekte. N ap aktive fonksyon sa a lè backend AI a pare.";
+}
+
+function escapeHTML(s){
+ return s.replace(/[&<>"']/g,c=>({
+ '&':'&amp;','<':'&lt;','>':'&gt;',
+ '"':'&quot;',"'":'&#39;'
+ }[c]));
+}
+
+function contact(){
+ alert("Sipò administratè: Lil_FaaydaireRTS. Fonksyon mesaj prive a ap konekte nan pwochen etap la.");
+}
+
+function changeLanguage(){
+ const lang=document.getElementById('language').value;
+ alert("Lang ou chwazi: "+lang+". Tradiksyon konplè a ap ajoute nan pwochen etap la.");
+}
+</script>
+</body>
+</html>
